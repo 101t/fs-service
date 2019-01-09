@@ -1,0 +1,35 @@
+<extension name="inbound_t1_fax">
+  <condition field="destination_number" expression="^0000$"> <!-- Change for your own DID -->
+    <action application="set" data="session_in_hangup_hook=true"/> <!-- Pass fax headers at hangup -->
+    <action application="set" data="api_hangup_hook=system ${base_dir}/scripts/process-fax.sh '\\\${fax_remote_station_id}' '\\\${fax_local_station_id}' '\\\${fax_document_transferred_pages}' '\\\${fax_document_total_pages}' '\\\${fax_result_text}' '${caller_id_number}' '${uuid}'"/> <!-- Script who receive fax headers at hangup-->
+    <action application="python" data="process-rxfax"/> <!-- Fax reception management script -->
+    <action application="hangup"/>
+  </condition>
+</extension>
+
+<include>
+  <extension name="908504300003">
+    <condition field="destination_number" expression="^908504300003$">
+      <action application="answer" />
+      <action application="playback" data="silence_stream://2000"/>
+      <action application="rxfax" data="/home/user1/fax/rxfax-${uuid}.tiff"/>
+      <action application="hangup"/>
+      <action application="set" data="transfer_ringback=${us-ring}"/>
+      <action application="spandsp_start_fax_detect" data="transfer '9178 XML default' 6"/>
+      <!--<action application="set" data="session_in_hangup_hook=true"/>
+      <action application="set" data="fax_enable_t38_request=true"/>
+      <action application="set" data="fax_enable_t38=true"/>-->
+    </condition>
+  </extension>
+</include>
+
+<extension name="fax_receive">
+  <condition field="destination_number" expression="^908504300003$">
+    <action application="answer" />
+    <action application="playback" data="silence_stream://2000"/>
+    <action application="rxfax" data="/tmp/rxfax-${uuid}.tiff"/>
+    <action application="hangup"/>
+    <!--<action application="set" data="fax_enable_t38_request=true"/>
+    <action application="set" data="fax_enable_t38=true"/>-->
+  </condition>
+</extension>

@@ -1,0 +1,8 @@
+FREESWITCH_IP_ADDRESS = "127.0.0.1"
+FREESWITCH_PORT = "8021"
+FREESWITCH_PASSWORD = "ClueCon"
+GATEWAY_PREFIX = ""#"sippy"
+USERS_DIR = "/home/user1/freeswitchusers/"
+IVR_DIR = "/usr/local/freeswitch/conf/ivr_menus/"
+RXFAX_DIR = "/var/www/html/rxfax/"
+TXFAX_DIR = "/var/www/html/txfax/"

@@ -1,0 +1,33 @@
+cdr-pusher=# \d+ cdr
+                                                            Table "public.cdr"
+       Column       |           Type           |                    Modifiers                     | Storage  | Stats target | Description 
+--------------------+--------------------------+--------------------------------------------------+----------+--------------+-------------
+ id                 | integer                  | not null default nextval('cdr_id_seq'::regclass) | plain    |              | 
+ switch             | character varying(80)    | not null                                         | extended |              | 
+ cdr_source_type    | integer                  |                                                  | plain    |              | 
+ callid             | character varying(80)    | not null                                         | extended |              | 
+ caller_id_number   | character varying(80)    | not null                                         | extended |              | 
+ caller_id_name     | character varying(80)    | not null                                         | extended |              | 
+ destination_number | character varying(80)    | not null                                         | extended |              | 
+ dialcode           | character varying(10)    |                                                  | extended |              | 
+ state              | character varying(5)     |                                                  | extended |              | 
+ channel            | character varying(80)    |                                                  | extended |              | 
+ starting_date      | timestamp with time zone | not null                                         | plain    |              | 
+ duration           | integer                  | not null                                         | plain    |              | 
+ billsec            | integer                  | not null                                         | plain    |              | 
+ progresssec        | integer                  |                                                  | plain    |              | 
+ answersec          | integer                  |                                                  | plain    |              | 
+ waitsec            | integer                  |                                                  | plain    |              | 
+ hangup_cause_id    | integer                  |                                                  | plain    |              | 
+ hangup_cause       | character varying(80)    |                                                  | extended |              | 
+ direction          | integer                  |                                                  | plain    |              | 
+ country_code       | character varying(3)     |                                                  | extended |              | 
+ accountcode        | character varying(40)    |                                                  | extended |              | 
+ buy_rate           | numeric(10,5)            |                                                  | main     |              | 
+ buy_cost           | numeric(12,5)            |                                                  | main     |              | 
+ sell_rate          | numeric(10,5)            |                                                  | main     |              | 
+ sell_cost          | numeric(12,5)            |                                                  | main     |              | 
+ extradata          | jsonb                    |                                                  | extended |              | 
+ imported           | boolean                  | not null default false                           | plain    |              | 
+Indexes:
+    "cdr_pkey" PRIMARY KEY, btree (id)

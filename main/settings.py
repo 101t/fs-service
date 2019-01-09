@@ -97,10 +97,10 @@ DATABASES = {
     },
     'cdr-pusher': {
         'NAME': 'cdr-pusher',
-        'HOST': '185.77.91.8',
+        'HOST': '0.0.0.0',
         'ENGINE': 'django.db.backends.postgresql',
         'USER': 'postgres',
-        'PASSWORD': 'a123123',
+        'PASSWORD': '123',
         'PORT': 5432,
     }
 }

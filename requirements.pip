@@ -12,5 +12,6 @@ djangocms-admin-style==1.2.4
 djangorestframework==3.4.7
 lxml==3.6.4
 Markdown==2.6.7
+psycopg2==2.7.6.1
 six==1.10.0
 tablib==0.11.2

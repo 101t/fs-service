@@ -22,7 +22,7 @@ originate {ignore_early_media=true,absolute_codec_string='PCMU,PCMA',fax_enable_
 
 originate {ignore_early_media=true,fax_enable_t38=true,fax_verbose=true,fax_use_ecm=false,fax_enable_t38_request=false}sofia/gateway/908504300003/⁠⁠⁠02164958288 &txfax('/home/user1/fax/txfax-sample.tiff')
 
-sftp://user1@185.77.91.8/home/user1/fax/txfax-sample.tiff
+sftp://user1@0.0.0.0/home/user1/fax/txfax-sample.tiff
 
 originate {ignore_early_media=true,fax_enable_t38=true,fax_verbose=true,fax_use_ecm=false,fax_enable_t38_request=false}sofia/gateway/908504300004/908504300003⁠⁠⁠ &txfax('/home/tarek/fax/sample.tif')
 

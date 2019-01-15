@@ -61,7 +61,7 @@ class Fax(object):
 import ESL
 con = ESL.ESLconnection("127.0.0.1", "8021", "ClueCon")
 con.connected()
-res = con.bgapi("originate", "{ignore_early_media=true,fax_enable_t38=true,fax_verbose=true,fax_use_ecm=false,fax_enable_t38_request=false}sofia/gateway/908504300003/908504300004 &txfax(/tmp/224e2d06-9553-4c46-a053-974a1aa2dfba.tiff)")
+res = con.bgapi("originate", "{ignore_early_media=true,fax_enable_t38=true,fax_verbose=true,fax_use_ecm=false,fax_enable_t38_request=false}sofia/gateway/908509999999/908509999998 &txfax(/tmp/224e2d06-9553-4c46-a053-974a1aa2dfba.tiff)")
 """
 
 """

@@ -12,7 +12,22 @@ FreeSWITCH REST API built with django and python2, sending and receiving FAX, se
 ```sh
 sh dep-requiremets.sh
 ```
+
 4. Finally you may install django project on your host.
+	
+	1. Download and Extract folder We recommend installing in a virtualenv by `virtualenv -p python27 env && source env/bin/activate`
+	2. Install django dependencies:
+	```sh 
+	pip install -r requirements.pip
+	```
+	3. cd to `fs-service` and run:
+	```sh
+	python manage.py migrate 			# Initialize DB
+	python manage.py createsuperuser 	# Create Superuser
+	python manage.py collectstatic 		# collect static files
+	python manage.py runserver			# Run API service
+	```
+
 
 
 ## Contribute

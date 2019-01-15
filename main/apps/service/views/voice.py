@@ -42,4 +42,4 @@ class OriginateVoice(APIView):
 			args['status'] = 'Client Error'
 			return Response(args, status=status.HTTP_400_BAD_REQUEST)
 
-# curl -X POST http://127.0.0.1:8000/api/voice/ -H 'Authorization: Token 35552b5ac3ba375a5a00aa764c497cab20b61cea' -H 'Content-Type:application/json' -d '{"username": "908504300003", "filename": "72df3bef-ec07-4968-9959-bd6a70a2e8c8.wav", "numbers": "05312089995"}'
+# curl -X POST http://127.0.0.1:8000/api/voice/ -H 'Authorization: Token 35552b5ac3ba375a5a00aa764c497cab20b61cea' -H 'Content-Type:application/json' -d '{"username": "908509999999", "filename": "72df3bef-ec07-4968-9959-bd6a70a2e8c8.wav", "numbers": "05319999999"}'

@@ -50,4 +50,4 @@ Notice 'service' take ("new", "edit", "delete"), 'register' (true, false as defa
 			args['status'] = 'Client Error'
 			return Response(args, status=status.HTTP_400_BAD_REQUEST)
 
-# curl -X POST http://127.0.0.1:8000/api/gateway/managemet/ -H 'Authorization: Token 35552b5ac3ba375a5a00aa764c497cab20b61cea' -H 'Content-Type:application/json' -d '{"service": "new", "username": "908504300003", "password": "34tarek34", "host": "sip.pasifiktelekom.com.tr", "register": false}'
+# curl -X POST http://127.0.0.1:8000/api/gateway/managemet/ -H 'Authorization: Token 35552b5ac3ba375a5a00aa764c497cab20b61cea' -H 'Content-Type:application/json' -d '{"service": "new", "username": "908509999999", "password": "34tarek34", "host": "sip.providerexample.com", "register": false}'

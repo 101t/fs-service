@@ -57,7 +57,7 @@ class OriginateFax(APIView):
 			args['status'] = 'Client Error'
 			return Response(args, status=status.HTTP_400_BAD_REQUEST)
 
-# curl -X POST http://127.0.0.1:8000/api/service/fax/ -H 'Authorization: Token 35552b5ac3ba375a5a00aa764c497cab20b61cea' -H 'Content-Type:application/json' -d '{"username": "908504300003", "filename": "72df3bef-ec07-4968-9959-bd6a70a2e8c8.doc", "numbers": "05312089995"}'
+# curl -X POST http://127.0.0.1:8000/api/service/fax/ -H 'Authorization: Token 35552b5ac3ba375a5a00aa764c497cab20b61cea' -H 'Content-Type:application/json' -d '{"username": "908509999999", "filename": "72df3bef-ec07-4968-9959-bd6a70a2e8c8.doc", "numbers": "05319999999"}'
 
 """
 #RESPONSE
@@ -67,8 +67,8 @@ class OriginateFax(APIView):
         "uuid": "315ded86-99e9-11e6-88e6-c7aaf2c109a7",
         "details": [{
             "body": null,
-            "cli": "908504300003",
-            "cld": "902127010339",
+            "cli": "908509999999",
+            "cld": "902129999999",
             "event-name": "SOCKET_DATA",
             "job-uuid": "315dfd94-99e9-11e6-88e7-c7aaf2c109a7",
             "file": "36e7b256-e441-4ec4-a7cf-9c2323c82f96.tiff"

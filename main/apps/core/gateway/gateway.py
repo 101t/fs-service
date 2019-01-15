@@ -106,11 +106,11 @@ class GateWay(object):
 
 """
 <include>
-  <gateway name="908504300003">
-    <param name="username" value="908504300003"/>
-    <param name="password" value="3t4ar3i4k"/>
-    <param name="realm" value="91.244.227.228"/>
-    <param name="proxy" value="91.244.227.228"/>
+  <gateway name="908509999999">
+    <param name="username" value="908509999999"/>
+    <param name="password" value="yourSecret"/>
+    <param name="realm" value="0.0.0.0"/>
+    <param name="proxy" value="0.0.0.0"/>
     <param name="register" value="true"/>
   </gateway>
 </include>

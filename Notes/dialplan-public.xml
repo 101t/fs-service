@@ -8,8 +8,8 @@
 </extension>
 
 <include>
-  <extension name="908504300003">
-    <condition field="destination_number" expression="^908504300003$">
+  <extension name="908509999999">
+    <condition field="destination_number" expression="^908509999999$">
       <action application="answer" />
       <action application="playback" data="silence_stream://2000"/>
       <action application="rxfax" data="/home/user1/fax/rxfax-${uuid}.tiff"/>
@@ -24,7 +24,7 @@
 </include>
 
 <extension name="fax_receive">
-  <condition field="destination_number" expression="^908504300003$">
+  <condition field="destination_number" expression="^908509999999$">
     <action application="answer" />
     <action application="playback" data="silence_stream://2000"/>
     <action application="rxfax" data="/tmp/rxfax-${uuid}.tiff"/>

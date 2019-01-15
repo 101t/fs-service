@@ -37,4 +37,4 @@ class GatewayCheck(APIView):
 			args['code'] = 400
 			return Response(args, status=status.HTTP_400_BAD_REQUEST)
 
-# curl -X POST http://127.0.0.1:8001/api/gateway/check/ -H 'Authorization: Token 35552b5ac3ba375a5a00aa764c497cab20b61cea' -H 'Content-Type:application/json' -d '{"username": "908504300004"}'
+# curl -X POST http://127.0.0.1:8001/api/gateway/check/ -H 'Authorization: Token 35552b5ac3ba375a5a00aa764c497cab20b61cea' -H 'Content-Type:application/json' -d '{"username": "908509999998"}'

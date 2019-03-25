@@ -1,5 +1,5 @@
-Valid Commands:
-
+### Valid Commands:
+```sh
 ...,,Shutdown,mod_commands
 acl,<ip> <list_name>,Compare an ip to an acl list,mod_commands
 alias,[add|stickyadd] <alias> <command> | del [<alias>|*],Alias,mod_commands
@@ -204,3 +204,4 @@ voicemail_inject,[group=<group>[@domain]|domain=<domain>|<box>[@<domain>]] <soun
 xml_flush_cache,<id> <key> <val>,Clear xml cache,mod_commands
 xml_locate,[root | <section> <tag> <tag_attr_name> <tag_attr_val>],Find some xml,mod_commands
 xml_wrap,<command> <args>,Wrap another api command in xml,mod_commands
+```

@@ -9,7 +9,4 @@ convert FileIN -resize 1728x1078 -monochrome -units PixelsPerInch -density 204x9
 
 soffice --headless --convert-to pdf filename.xlsx
 
-
-
-
 # libreoffice-script-provider-python uno-libs3 python3-uno

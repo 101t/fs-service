@@ -1,27 +1,38 @@
+### Install and Configure MySQL with FreeSWITCH
 
-
-# complete installation mysql db
+1. complete installation mysql db
+```sh
 apt-get install mysql-server mysql-client
+```
 
-# install mysql driver
+2. install mysql driver
+```sh
 apt-get install libmyodbc unixodbc-bin
+```
 
-
-# [Skipe it] search install libs
+3. [Skipe it] search install libs
+```sh
 find / -name 'lib*odbc*.so'
+```
 
-#for the folks working on 64 bit odbcinst.ini looks like
+4. for the folks working on 64 bit odbcinst.ini looks like
+```
 [MySQL]
 Description = ODBC for MySQL
 Driver = /usr/lib/x86_64-linux-gnu/odbc/libmyodbc.so
 Setup = /usr/lib/x86_64-linux-gnu/odbc/libodbcmyS.so
 FileUsage = 1
+```
 
-# after creating database to test connection
+5. after creating database to test connection
+```sh
 apt-get install unixodbc unixodbc-dev
 isql -v freeswitch
+```
 
-# link ini files to FreeSWITCH Directory
+6. link ini files to FreeSWITCH Directory
+```sh
 mkdir /usr/local/freeswitch/etc
 ln -s /etc/odbcinst.ini /usr/local/freeswitch/etc/odbcinst.ini
 ln -s /etc/odbc.ini /usr/local/freeswitch/etc/odbc.ini
+```

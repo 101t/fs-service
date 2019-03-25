@@ -1,3 +1,4 @@
+```
                              ! Execute a shell command
                       acl show Show a named ACL or list all named ACLs
                     ael reload Reload AEL configuration
@@ -372,3 +373,4 @@ ss7 set debug {on|off} linkset Enables SS7 debugging on a linkset
        xmpp set debug {on|off} Enable/Disable Jabber debug
              xmpp show buddies Show buddy lists of our clients
          xmpp show connections Show state of clients and components
+```

@@ -1,4 +1,4 @@
-Watch number of active channels
+### Watch number of active channels:
 
 watch "asterisk -vvvvvrx 'core show channels' | grep channels"
 [edit] Watch number of active calls

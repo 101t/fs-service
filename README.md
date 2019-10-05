@@ -7,21 +7,22 @@ A Simple **FreeSWITCH REST API** built with django and python2, sending and rece
 
 1. First of all you must install FreeSWITCH
 2. You also need to install [cdr-pusher](https://github.com/areski/cdr-pusher) that built with GoLang, it is important to grap cdr logs and save it in fax inbox table, do not forget to configure postgresql database as secondary db in django `settings.py`:
-```python
-DATABASES = {
-    'default': env.db('DEFAULTDB_URL'),
-    'cdr-pusher': env.db('CDRPUSHERDB_URL'),
-}
-````
-Copy `Sample.env` as `.env` in the project directory
-```sh
-cp Sample.env .env
-```
-You can modify these variables in `.env` file as
-```
-DEFAULTDB_URL=sqlite:///db.sqlite3
-CDRPUSHERDB_URL=postgres://postgres:123@127.0.0.1:5432/cdr-pusher
-```
+	```python
+	DATABASES = {
+	    'default': env.db('DEFAULTDB_URL'),
+	    'cdr-pusher': env.db('CDRPUSHERDB_URL'),
+	}
+	```
+	Copy `Sample.env` as `.env` in the project directory
+	```sh
+	cp Sample.env .env
+	```
+	You can modify these variables in `.env` file as
+	```
+	DEFAULTDB_URL=sqlite:///db.sqlite3
+	CDRPUSHERDB_URL=postgres://postgres:123@127.0.0.1:5432/cdr-pusher
+	```
+
 3. Install third-party dependencies such as `LibreOffice`, `ImageMagick`, `swig` for ESL, `python-lxml` by run: 
 
 ```sh
@@ -49,8 +50,7 @@ sh ./dep-requiremets.sh
 	# Run API service
 	python manage.py runserver 8000
 	```
-
-after installation complete navigate to `127.0.0.1:8000` in your browser.
+	after installation complete navigate to `127.0.0.1:8000` in your browser.
 
 ## Contribute
 Special Thanks to [Areski Belaid](https://github.com/areski) and [FreeSWITCH Community](https://freeswitch.org).

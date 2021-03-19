@@ -11,7 +11,7 @@ django-import-export==0.5.1
 django-markdown==0.8.4
 Django-Select2==5.8.9
 djangocms-admin-style==1.2.4
-djangorestframework==3.9.1
+djangorestframework==3.11.2
 et-xmlfile==1.0.1
 jdcal==1.4.1
 lxml==3.6.4

@@ -14,7 +14,7 @@ djangocms-admin-style==1.2.4
 djangorestframework==3.9.1
 et-xmlfile==1.0.1
 jdcal==1.4.1
-lxml==3.6.4
+lxml==4.6.3
 Markdown==2.6.7
 odfpy==1.4.0
 openpyxl==2.6.4

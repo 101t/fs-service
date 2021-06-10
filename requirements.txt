@@ -1,6 +1,6 @@
 defusedxml==0.6.0
 diff-match-patch==20121119
-Django==1.11.23
+Django==2.2.24
 django-admin-shortcuts==1.2.7
 django-appconf==1.0.2
 django-axes==2.2.0

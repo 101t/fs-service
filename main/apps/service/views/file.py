@@ -5,7 +5,7 @@ from rest_framework import authentication, permissions
 
 from rest_framework.parsers import MultiPartParser, FormParser
 import uuid, os
-from django.shortcuts import render_to_response, HttpResponse, redirect
+from django.shortcuts import HttpResponse, redirect
 from .utils.converter import FileConverter
 from main.apps.core.vars import RXFAX_DIR, TXFAX_DIR
 
@@ -34,7 +34,7 @@ Notice: This service accept only **multipart/form-data**
 	def get(self, request):
 		ip_addr = request.META['REMOTE_ADDR']
 		#print ip_addr
-	 	return Response({"status": "OK", "code": 200}, status=status.HTTP_200_OK)
+		return Response({"status": "OK", "code": 200}, status=status.HTTP_200_OK)
 	def post(self, request, format=None):
 		args = {}
 		my_file = request.FILES['filename']

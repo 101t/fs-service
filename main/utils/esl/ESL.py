@@ -5,8 +5,8 @@
 # This file is compatible with both classic and new-style classes.
 
 import _ESL
-import new
-new_instancemethod = new.instancemethod
+# import new
+# new_instancemethod = new.instancemethod
 def _swig_setattr_nondynamic(self,class_type,name,value,static=1):
     if (name == "thisown"): return self.this.own(value)
     if (name == "this"):
@@ -27,7 +27,7 @@ def _swig_getattr(self,class_type,name):
     if (name == "thisown"): return self.this.own()
     method = class_type.__swig_getmethods__.get(name,None)
     if method: return method(self)
-    raise AttributeError,name
+    raise AttributeError(name)
 
 def _swig_repr(self):
     try: strthis = "proxy of " + self.this.__repr__()

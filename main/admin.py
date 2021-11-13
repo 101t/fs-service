@@ -1,17 +1,17 @@
 from django.contrib.admin import AdminSite
-from django.utils.translation import ugettext_lazy
+from django.utils.translation import gettext_lazy
 from django.contrib import admin
 from compat import format_html
 from django.core import urlresolvers
 class AdminSiteTitles(AdminSite):
 	# Text to put at the end of each page's <title>.
-	site_title = ugettext_lazy('FreeSWITCH site admin')
+	site_title = gettext_lazy('FreeSWITCH site admin')
 
 	# Text to put in each page's <h1>.
-	site_header = ugettext_lazy('FreeSWITCH Service administration')
+	site_header = gettext_lazy('FreeSWITCH Service administration')
 
 	# Text to put at the top of the admin index page.
-	index_title = ugettext_lazy('Dashboard administration')
+	index_title = gettext_lazy('Dashboard administration')
 
 # admin.site = AdminSiteTitles()
 admin.site.site_title = format_html('FreeSWITCH site admin')

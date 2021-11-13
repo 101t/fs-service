@@ -30,7 +30,7 @@ doc, docx, rtf, xls, xlsx, ppt, pptx, odt, ods, odp, txt, html, csv, pdf
 			result = subprocess.Popen(cmd_str, shell=True)
 			result.wait()
 			if self.DEBUG: 
-				print "LiberOffice Convert:\n %s" % result.communicate()[0]
+				print("LiberOffice Convert:\n %s" % result.communicate()[0])
 			self.filename = "%s.pdf" % self.fn
 		#cmd1 = "convert %s -resize 1728x2255 -monochrome -units PixelsPerInch -density 204x196 -compress group4 -endian lsb %s.tiff" % (self.filename, self.fn)
 		#cmd2 = "convert %s -resize 1728x1078 -monochrome -units PixelsPerInch -density 204x98 -compress group4 -endian lsb %s.tiff" % (self.filename, self.fn)
@@ -42,7 +42,7 @@ doc, docx, rtf, xls, xlsx, ppt, pptx, odt, ods, odp, txt, html, csv, pdf
 		#result = subprocess.call(cmd_str.split(" "))
 		result.wait()
 		if self.DEBUG:
-			print "ImageMagic Convert:\n %s" % result.communicate()[0]
+			print("ImageMagic Convert:\n %s" % result.communicate()[0])
 			#.communicate()[0]
 		return "%s.tiff" % self.fn
 	def convert2pdf(self):
@@ -51,13 +51,13 @@ doc, docx, rtf, xls, xlsx, ppt, pptx, odt, ods, odp, txt, html, csv, pdf
 			result = subprocess.Popen(cmd_str, shell=True)
 			result.wait()
 			if self.DEBUG: 
-				print "LiberOffice Convert:\n %s" % result.communicate()[0]
+				print("LiberOffice Convert:\n %s" % result.communicate()[0])
 			self.filename = "%s.pdf" % self.fn
 		cmd_str = "convert %s %s.pdf" % (self.filename, self.fn)
 		result = subprocess.Popen(cmd_str, shell=True)
 		result.wait()
 		if self.DEBUG:
-			print "ImageMagic Convert2PDF:\n %s" % result.communicate()[0]
+			print("ImageMagic Convert2PDF:\n %s" % result.communicate()[0])
 			#.communicate()[0]
 		return "%s.pdf" % self.fn
 """

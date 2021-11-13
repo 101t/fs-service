@@ -1,10 +1,11 @@
-from django.conf.urls import include, url
-from views.voice import OriginateVoice
-from views.fax import OriginateFax
-from views.fax_report import FaxReport
-from views.fax_inbox import FaxInbox
-from views.file import UploadFile, DownloadFile
-from views.root import APIServiceView, APIVoiceView, APIFileView, APIFaxView
+from django.urls import include
+from django.conf.urls import url
+from .views.voice import OriginateVoice
+from .views.fax import OriginateFax
+from .views.fax_report import FaxReport
+from .views.fax_inbox import FaxInbox
+from .views.file import UploadFile, DownloadFile
+from .views.root import APIServiceView, APIVoiceView, APIFileView, APIFaxView
 
 urlpatterns = (
 	url(regex=r'^$', view=APIServiceView.as_view(), name="service"),

@@ -16,12 +16,12 @@ class Audio(object):
 			for number in numbers_list:
 				xx = con.bgapi("originate", str("{ignore_early_media=true}sofia/gateway/%s/%s &playback(%s)" % (self.name, number, self.file_path)))
 				if xx:
-					# print xx.getInfo()
-					# print str(xx.getHeader())
-					print str(xx.getBody())
-					print str(xx.getType())
-					print str(xx.firstHeader())
-					print str(xx.nextHeader())
+					# print(xx.getInfo())
+					# print(xx.getHeader())
+					print(xx.getBody())
+					print(xx.getType())
+					print(xx.firstHeader())
+					print(xx.nextHeader())
 					# body.append(xx.getBody())
 		con.disconnect()
 		return body

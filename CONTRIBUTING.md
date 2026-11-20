@@ -18,9 +18,7 @@ http://localhost:8080/docs.
 ## Before you open a PR
 
 ```bash
-cargo fmt
-cargo clippy --all-targets -- -D warnings
-cargo test
+make fmt check      # cargo fmt, then fmt --check + clippy -D warnings + tests
 ```
 
 * New behaviour comes with a test. API changes come with updated `#[utoipa::path]` docs — the
@@ -29,6 +27,7 @@ cargo test
   validators in `src/api/mod.rs`.
 * Schema changes are a new file in `migrations/`; never edit a released migration.
 * Keep dependencies few; explain any new one in the PR.
-* Update [CHANGELOG.md](CHANGELOG.md).
+* Add your change under `## [Unreleased]` in [CHANGELOG.md](CHANGELOG.md); maintainers turn
+  that section into the release notes (see "Releases" in the README).
 
 Commits follow [Conventional Commits](https://www.conventionalcommits.org) (`feat:`, `fix:`, `docs:` …).

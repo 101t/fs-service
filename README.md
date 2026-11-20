@@ -88,7 +88,16 @@ docker compose up -d --build
 open http://localhost:8080/docs
 ```
 
+### Docker image only
+
+```bash
+docker run -d --name fs-service --network host --env-file .env \
+  -v fss-data:/var/lib/fs-service ghcr.io/101t/fs-service:2      # or :latest, :2.0, :2.0.0
+```
+
 ### Next to an existing FreeSWITCH
+
+Download the static binary from [Releases](https://github.com/101t/fs-service/releases), or build it:
 
 ```bash
 cargo build --release                       # Rust 1.85+
@@ -252,10 +261,30 @@ Report vulnerabilities as described in [SECURITY.md](SECURITY.md).
 ## Development
 
 ```bash
-cargo test                                   # unit + API tests, includes a fake FreeSWITCH
-cargo clippy --all-targets -- -D warnings
-RUST_LOG=debug cargo run -- --api-tokens $(openssl rand -hex 32) --esl-password …
+make            # list all targets
+make check      # fmt + clippy + tests, exactly what CI runs (tests include a fake FreeSWITCH)
+make run        # run with settings from .env
+make up         # FreeSWITCH + fs-service via docker compose
 ```
+
+## Releases
+
+Versions follow [SemVer](https://semver.org) and every release is a `vX.Y.Z` git tag.
+
+```bash
+# 1. move the "Unreleased" notes in CHANGELOG.md under "## [2.1.0] - 2026-12-01" and commit
+make release-minor            # or release-patch / release-major / release VERSION=2.1.0
+git push origin HEAD v2.1.0   # 2. publishing starts here
+```
+
+`make release` refuses to run with uncommitted changes, an existing tag, or a missing CHANGELOG
+section. It bumps `Cargo.toml`, runs the full check, then commits and tags. The pushed tag runs
+[`release.yml`](.github/workflows/release.yml), which:
+
+1. verifies the tag matches `Cargo.toml` and runs the full check;
+2. pushes `ghcr.io/101t/fs-service` tagged `2.1.0`, `2.1`, `2` and `latest`;
+3. builds a static x86_64 Linux binary (musl) with a SHA-256 checksum;
+4. publishes a GitHub Release with the CHANGELOG section as notes and the binary attached.
 
 Code map:
 

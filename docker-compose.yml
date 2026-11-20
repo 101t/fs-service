@@ -10,8 +10,9 @@
 # a file uploaded to fs-service is exactly where txfax/playback look for it.
 services:
   fs-service:
+    # Released image; pin a version with FSS_VERSION=2.0.0. `--build` builds from source instead.
+    image: ghcr.io/101t/fs-service:${FSS_VERSION:-latest}
     build: .
-    image: fs-service:latest
     env_file: .env
     environment:
       FSS_ESL_ADDR: 127.0.0.1:8021

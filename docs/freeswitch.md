@@ -8,15 +8,33 @@ three things from the switch; ready-made files are in [`contrib/freeswitch/`](..
 [`event_socket.conf.xml`](../contrib/freeswitch/autoload_configs/event_socket.conf.xml) → `autoload_configs/`
 
 ```xml
+<X-PRE-PROCESS cmd="env-set" data="fss_esl_password=$FSS_ESL_PASSWORD"/>
 <param name="listen-ip" value="127.0.0.1"/>
-<param name="password" value="…same as FSS_ESL_PASSWORD…"/>
+<param name="password" value="$${fss_esl_password}"/>
 <param name="apply-inbound-acl" value="loopback.auto"/>
 ```
 
 The stock config listens on all interfaces with password `ClueCon`. Anyone who reaches that port
-controls the switch, so change both. Then `fs_cli -x 'reload mod_event_socket'`.
+controls the switch. This one binds to loopback and reads the password from the
+`FSS_ESL_PASSWORD` environment variable, the same one fs-service uses, so the password lives only
+in `.env`:
+
+* **Docker Compose:** nothing to do; compose passes the variable and refuses to start without it.
+* **systemd:** `systemctl edit freeswitch` → `[Service]` `EnvironmentFile=/etc/fs-service.env`,
+  or replace `$${fss_esl_password}` with the password itself.
+
+> [!WARNING]
+> If the variable is missing, the password becomes empty and mod_event_socket silently accepts
+> `ClueCon`. fs-service then fails to log in (`auth rejected` in its log, `freeswitch_connected:
+> false`), which is your signal. Check with `fs_cli -x status`: it must **fail** without `-p`.
+
+Apply with `fs_cli -p "$FSS_ESL_PASSWORD" -x 'reload mod_event_socket'`, or restart FreeSWITCH.
 
 Check: `curl localhost:8080/health` → `"freeswitch_connected": true`.
+
+Using the safarov/freeswitch image yourself? Its built-in healthcheck runs `fs_cli` with the
+default password and reports `unhealthy` once you change it; `docker-compose.yml` overrides it with
+`fs_cli -p "$FSS_ESL_PASSWORD" -x status`.
 
 ## 2. Gateways directory (required for `/api/v1/gateways`)
 

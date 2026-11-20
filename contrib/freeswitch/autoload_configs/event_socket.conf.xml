@@ -2,15 +2,21 @@
   mod_event_socket for fs-service.
   * Listens on loopback only: run fs-service on the same host (or put both on a private network
     and change listen-ip + the ACL).
-  * Replace the password (openssl rand -hex 24) and set the same value in FSS_ESL_PASSWORD.
-    Never keep the stock "ClueCon": the event socket can run any FreeSWITCH command.
+  * The password comes from the FSS_ESL_PASSWORD environment variable of the FreeSWITCH
+    process, the same variable fs-service reads, so it lives in one place (.env).
+    Without Docker, either export FSS_ESL_PASSWORD for FreeSWITCH (systemd: Environment=)
+    or replace $${fss_esl_password} below with the password itself.
+  * Make sure it is set: if the password ends up empty, mod_event_socket silently falls back
+    to the stock "ClueCon", and the event socket can run any FreeSWITCH command.
 -->
 <configuration name="event_socket.conf" description="Socket Client">
+  <!-- `$` before the name means "read the environment variable". -->
+  <X-PRE-PROCESS cmd="env-set" data="fss_esl_password=$FSS_ESL_PASSWORD"/>
   <settings>
     <param name="nat-map" value="false"/>
     <param name="listen-ip" value="127.0.0.1"/>
     <param name="listen-port" value="8021"/>
-    <param name="password" value="CHANGE_ME_ESL_PASSWORD"/>
+    <param name="password" value="$${fss_esl_password}"/>
     <param name="apply-inbound-acl" value="loopback.auto"/>
   </settings>
 </configuration>

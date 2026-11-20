@@ -83,8 +83,8 @@ flowchart LR
 git clone https://github.com/101t/fs-service && cd fs-service
 cp .env.example .env
 #  FSS_API_TOKENS=$(openssl rand -hex 32)
-#  FSS_ESL_PASSWORD=$(openssl rand -hex 24)   ← also put it in contrib/freeswitch/autoload_configs/event_socket.conf.xml
-docker compose up -d --build
+#  FSS_ESL_PASSWORD=$(openssl rand -hex 24)   ← used by both fs-service and FreeSWITCH
+docker compose up -d                          # --build to build from source
 open http://localhost:8080/docs
 ```
 

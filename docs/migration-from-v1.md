@@ -39,7 +39,9 @@ Notes:
 
 ## Steps
 
-1. Generate tokens (`openssl rand -hex 32`) and a new ESL password; update `event_socket.conf.xml`.
+1. Generate tokens (`openssl rand -hex 32`) and a new ESL password (`FSS_ESL_PASSWORD`); install
+   the [event socket config](../contrib/freeswitch/autoload_configs/event_socket.conf.xml) that
+   reads it (see [freeswitch.md](freeswitch.md#1-event-socket-required)).
 2. Point `FSS_GATEWAY_DIR` at the old gateway directory: existing gateway XML files keep working.
 3. Point `FSS_INBOX_DIR` at the old `RXFAX_DIR`: old `rxfax-<uuid>.tiff` files stay downloadable
    (they appear in the inbox list only for calls recorded by v2).

@@ -6,6 +6,14 @@ Each `## [x.y.z]` section becomes the notes of the GitHub Release for tag `vx.y.
 
 ## [Unreleased]
 
+### Fixed
+- Docker Compose: fs-service could not log in to FreeSWITCH (`auth rejected`) unless the ESL
+  password was copied by hand into `event_socket.conf.xml`. The config now reads
+  `FSS_ESL_PASSWORD` from the environment, so `.env` is the single place to set it, and
+  compose refuses to start without it.
+- Docker Compose: the FreeSWITCH container reported `unhealthy` because the image's healthcheck
+  uses the default `ClueCon` password; compose now overrides it with the configured password.
+
 ## [2.0.0] - 2026-11-20
 
 Complete rewrite in Rust. See [docs/migration-from-v1.md](docs/migration-from-v1.md).

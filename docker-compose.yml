@@ -1,8 +1,7 @@
 # FreeSWITCH + fs-service on one host.
 #
 #   cp .env.example .env            # set FSS_API_TOKENS and FSS_ESL_PASSWORD
-#   # put the same ESL password in contrib/freeswitch/autoload_configs/event_socket.conf.xml
-#   docker compose up -d --build
+#   docker compose up -d            # add --build to build from source
 #   open http://localhost:8080/docs
 #
 # Both containers use host networking: SIP and RTP media need real ports, and the event
@@ -27,6 +26,16 @@ services:
     network_mode: host
     # Start after fs-service so the shared volumes are created with fs-service's ownership.
     depends_on: [fs-service]
+    environment:
+      # Read by contrib/freeswitch/autoload_configs/event_socket.conf.xml. Required: an empty
+      # password would make FreeSWITCH fall back to the stock "ClueCon".
+      FSS_ESL_PASSWORD: ${FSS_ESL_PASSWORD:?set FSS_ESL_PASSWORD in .env}
+    # The image's own healthcheck runs fs_cli with the default password, which we replaced.
+    healthcheck:
+      test: ["CMD-SHELL", "fs_cli -p \"$$FSS_ESL_PASSWORD\" -x status | grep -q ^UP"]
+      interval: 15s
+      timeout: 5s
+      start_period: 20s
     volumes:
       - fss-data:/var/lib/fs-service
       - fss-gateways:/etc/freeswitch/sip_profiles/external

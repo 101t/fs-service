@@ -1,0 +1,25 @@
+<!--
+  Optional, recommended for billing-grade CDRs.
+
+  fs-service already records every call live over the event socket. Calls that end while
+  fs-service is restarting would be missed by that path alone. mod_json_cdr closes the gap:
+  FreeSWITCH POSTs each CDR, retries on failure and spools undeliverable ones to err-log-dir.
+  Both paths write the same table; duplicates are ignored by call UUID.
+
+  Enable: add <load module="mod_json_cdr"/> to modules.conf.xml, then `reload mod_json_cdr`.
+-->
+<configuration name="json_cdr.conf" description="JSON CDR to fs-service">
+  <settings>
+    <param name="url" value="http://127.0.0.1:8080/api/v1/cdrs/ingest"/>
+    <!-- HTTP Basic; the user name is ignored, the password is one of FSS_API_TOKENS. -->
+    <param name="auth-scheme" value="basic"/>
+    <param name="cred" value="freeswitch:CHANGE_ME_API_TOKEN"/>
+    <!-- Raw JSON body (fs-service does not accept the url-encoded form). -->
+    <param name="encode" value="false"/>
+    <param name="retries" value="5"/>
+    <param name="delay" value="5"/>
+    <param name="disable-100-continue" value="true"/>
+    <param name="log-b-leg" value="true"/>
+    <param name="err-log-dir" value="$${log_dir}/json_cdr"/>
+  </settings>
+</configuration>

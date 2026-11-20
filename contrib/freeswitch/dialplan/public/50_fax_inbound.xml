@@ -1,0 +1,19 @@
+<!--
+  Receive faxes on your DIDs. fs-service lists them at GET /api/v1/fax/inbox and serves the
+  images at GET /api/v1/files/rxfax-<uuid>.tiff?folder=inbox (add &format=pdf for a PDF).
+
+  * Replace the DIDs in `expression`.
+  * The rxfax path must be FSS_INBOX_DIR and the file name must stay rxfax-${uuid}.tiff.
+-->
+<include>
+  <extension name="fs_service_fax_inbound">
+    <condition field="destination_number" expression="^(905550000000|905550000001)$">
+      <action application="answer"/>
+      <action application="set" data="fax_enable_t38=true"/>
+      <action application="set" data="fax_enable_t38_request=true"/>
+      <action application="playback" data="silence_stream://2000"/>
+      <action application="rxfax" data="/var/lib/fs-service/inbox/rxfax-${uuid}.tiff"/>
+      <action application="hangup"/>
+    </condition>
+  </extension>
+</include>

@@ -1,0 +1,38 @@
+# FreeSWITCH + fs-service on one host.
+#
+#   cp .env.example .env            # set FSS_API_TOKENS and FSS_ESL_PASSWORD
+#   # put the same ESL password in contrib/freeswitch/autoload_configs/event_socket.conf.xml
+#   docker compose up -d --build
+#   open http://localhost:8080/docs
+#
+# Both containers use host networking: SIP and RTP media need real ports, and the event
+# socket stays on 127.0.0.1. Volumes are mounted at the same paths in both containers, so
+# a file uploaded to fs-service is exactly where txfax/playback look for it.
+services:
+  fs-service:
+    build: .
+    image: fs-service:latest
+    env_file: .env
+    environment:
+      FSS_ESL_ADDR: 127.0.0.1:8021
+    network_mode: host
+    volumes:
+      - fss-data:/var/lib/fs-service
+      - fss-gateways:/etc/freeswitch/sip_profiles/external
+    restart: unless-stopped
+
+  freeswitch:
+    image: safarov/freeswitch:latest
+    network_mode: host
+    # Start after fs-service so the shared volumes are created with fs-service's ownership.
+    depends_on: [fs-service]
+    volumes:
+      - fss-data:/var/lib/fs-service
+      - fss-gateways:/etc/freeswitch/sip_profiles/external
+      - ./contrib/freeswitch/autoload_configs/event_socket.conf.xml:/etc/freeswitch/autoload_configs/event_socket.conf.xml:ro
+      - ./contrib/freeswitch/dialplan/public/50_fax_inbound.xml:/etc/freeswitch/dialplan/public/50_fax_inbound.xml:ro
+    restart: unless-stopped
+
+volumes:
+  fss-data: {}
+  fss-gateways: {}
